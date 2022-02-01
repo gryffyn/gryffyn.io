@@ -3,6 +3,11 @@ name: default
 type: docker
 
 steps:
+  - name: submodules
+    image: alpine/git
+    commands:
+    - git submodule update --init --recursive
+
   - name: build
     image: plugins/hugo
     settings:
