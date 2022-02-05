@@ -14,7 +14,7 @@ steps:
       validate: true
       extended: true
       hugo_version: 0.92.0
-      url: https://gryffyn.io
+      url: https://gryffyn.io/
 
   - name: deploy
     image: appleboy/drone-scp
