@@ -1,7 +1,7 @@
 ---
 title: "gryffyn.io"
 img:
-  src: "./pfp.min.webp"
+  src: "./pfp.webp"
   alt: "profile picture"
 ---
 
