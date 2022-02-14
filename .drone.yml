@@ -29,5 +29,7 @@ steps:
       port:
         from_secret: ssh_port
       command_timeout: 2m
-      target: /srv/gryffyn.io/
+      target: /srv/gryffyn.io/public/
       source: public/*
+      strip_components: 1
+      rm: true
