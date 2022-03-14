@@ -4,7 +4,11 @@ date: 2022-03-14T15:46:02+01:00
 description: "Or, How I Spend My Weekends"
 ---
 
-I have half a million little projects I've started, written a bit of code for, and then promptly forgotten about. Rather than focus on the projects I haven't done, I decided to take a bit of a look at the ones I have done. I was inspired to write this based on [this blog post](https://blog.carlmjohnson.net/post/2018/go-cli-tools/) by Carl M. Johnson that I saw on [lobste.rs](https://lobste.rs/s/nbhotp/more_than_dozen_command_line_tools_i_ve).
+I have half a million little projects I've started (in nearly as many languages), written a bit of code for, and then promptly forgotten about. Rather than focus on the projects I haven't done, I decided to take a bit of a look at the ones I have done. I was inspired to write this based on [this blog post](https://blog.carlmjohnson.net/post/2018/go-cli-tools/) by Carl M. Johnson that I saw on [lobste.rs](https://lobste.rs/s/nbhotp/more_than_dozen_command_line_tools_i_ve).
+
+A lot of these (nearly all in fact) I wrote as a small script to do a task on a group of files. I could have written some of these in Bash, all of them in Python, but Go compiles so quickly it's basically usable as a scripting language. I have many other small scripts in Bash, Go, and Python, but nearly all of them were written for a very specific purpose. For this post I've only selected the tools that can be used by others fairly easily.
+
+One of these, `strangelove`, I wrote for a larger project (my dissertation), but the rest of them were written for my own personal use. I just prettied them up a bit and switched the repos to public, in the hopes that if they benefited me they may benefit someone else.
 
 ## strangelove
 - **Description** // [strangelove](https://git.neveris.one/gryffyn/strangelove) is a bit of a WIP tool for inserting binary data into binary files, writing in-place at a specified offset.
