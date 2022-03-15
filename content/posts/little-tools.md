@@ -34,7 +34,7 @@ One of these, `strangelove`, I wrote for a larger project (my dissertation), but
 ## pdf2cbz
 - **Description** // [pdf2cbz](https://git.neveris.one/gryffyn/pdf2cbz) converts a PDF to a ZIP-compressed comic book archive (CBZ). It can crop the PDF pages before archiving them in the CBZ, drastically reducing file size on PDFs with a lot of blank space.
 - **Origin** // As is apparently the case with every tool I have, I had a few PDFs I wanted in CBZ format, and doing it by hand was *really* not appealing.
-- **Status** // WIP. JPEG export works, PNG export is a *litle* broken. See [here](https://git.neveris.one/gryffyn/pdf2cbz#a-word-s-of-warning) for details.
+- **Status** // WIP. JPEG export works, PNG export is a *litle* broken. See [the README](https://git.neveris.one/gryffyn/pdf2cbz#a-word-s-of-warning) for details.
 - **Usage** // Not very frequently, but it's a very nice tool to have.
 - **Satisfaction** // I would be happier with this if I figured out the PNG issue. I haven't had much time to work on it, and JPEG is usually the correct choice anyways, so it may be a while before it's completed.
 ## exren

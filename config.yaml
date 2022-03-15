@@ -5,8 +5,10 @@ languageCode: "en-us"
 pygmentsUseClasses: true
 relativeURLs: true
 # enableGitInfo: true
+enableRobotsTXT: true
 params:
   title: "gryffyn"
+  description: "blog posts about tech and queerness"
   titleCutting: true
   info:
     author: "gryffyn"
