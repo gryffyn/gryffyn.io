@@ -11,7 +11,6 @@ steps:
   - name: build
     image: plugins/hugo
     settings:
-      validate: true
       extended: true
       hugo_version: 0.95.0
       url: https://gryffyn.io/
