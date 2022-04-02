@@ -13,7 +13,7 @@ steps:
     settings:
       validate: true
       extended: true
-      hugo_version: 0.92.0
+      hugo_version: 0.95.0
       url: https://gryffyn.io/
 
   - name: deploy
