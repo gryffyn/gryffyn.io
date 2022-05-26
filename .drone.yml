@@ -27,3 +27,4 @@ steps:
         from_secret: ssh_port
       source: ./public/
       target: /srv/gryffyn.io/public/
+      args: --omit-dir-times
