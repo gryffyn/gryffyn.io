@@ -19,7 +19,7 @@ steps:
     image: drillster/drone-rsync
     settings:
       hosts: [ "gryffyn.io" ]
-      username:
+      user:
         from_secret: ssh_user
       key:
         from_secret: ssh_key
