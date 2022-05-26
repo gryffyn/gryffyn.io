@@ -12,23 +12,18 @@ steps:
     image: plugins/hugo
     settings:
       extended: true
-      hugo_version: 0.95.0
+      hugo_version: 0.99.0
       url: https://gryffyn.io/
 
   - name: deploy
-    image: appleboy/drone-scp
+    image: drillster/drone-rsync
     settings:
-      host: gryffyn.io
+      hosts: [ "gryffyn.io" ]
       username:
         from_secret: ssh_user
       key:
         from_secret: ssh_key
-      passphrase:
-        from_secret: ssh_pass
       port:
         from_secret: ssh_port
-      command_timeout: 2m
+      source: ./public/
       target: /srv/gryffyn.io/public/
-      source: public/*
-      strip_components: 1
-      rm: true
