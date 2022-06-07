@@ -2,12 +2,10 @@ kind: pipeline
 name: default
 type: docker
 
-steps:
-  - name: submodules
-    image: alpine/git
-    commands:
-    - git submodule update --init --recursive
+clone:
+  recursive: true
 
+steps:
   - name: build
     image: plugins/hugo
     settings:
