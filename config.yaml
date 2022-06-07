@@ -16,6 +16,13 @@ params:
   sections:
     about: true
     posts: true
+  socialLinks:
+    - name: git
+      url: "https://git.gryffyn.io/gryffyn"
+    - name: github
+      url: "https://github.com/gryffyn"
+    - name: twitter
+      url: "https://twitter.com/gryffynmp"
   navlinks:
     - name: about/
       url: about/
