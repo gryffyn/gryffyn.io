@@ -10,6 +10,8 @@ params:
   title: "gryffyn"
   description: "blog posts about tech and queerness"
   titleCutting: true
+  goatcounter: true
+  gcURL: "https://stat.gryffyn.io/"
   info:
     author: "gryffyn"
     link: "https://github.com/gryffyn"
