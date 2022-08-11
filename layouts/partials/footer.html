@@ -1,0 +1,12 @@
+<footer class="footer">
+    {{ with $.Site.Params.Info }}
+    <p>© {{ now.Format "2006" }} <a href="{{ .Link }}">{{ .Author }}</a> --
+    {{ end }}
+    {{- with .Site.Home -}}
+      {{ with .OutputFormats.Get "rss" -}}
+        <a href="{{ .Permalink }}" rel="noopener {{ .Rel }}" type="{{ .MediaType.Type }}">rss</a>
+      {{ end -}}
+    {{- end -}}
+    </p>
+    <span id="iab-pcm-sdk"></span><span id="iab-autofill-sdk"></span>
+</footer>
