@@ -6,6 +6,11 @@ pygmentsUseClasses: true
 relativeURLs: true
 # enableGitInfo: true
 enableRobotsTXT: true
+#frontmatter:
+#  date:
+#    - ":filename"
+#    - ":default"
+#    - ":fileModTime"
 params:
   title: "gryffyn"
   description: "blog posts about tech and queerness"
@@ -30,3 +35,5 @@ params:
       url: about/
     - name: posts/
       url: posts/
+    - name: galleries/
+      url: galleries/
