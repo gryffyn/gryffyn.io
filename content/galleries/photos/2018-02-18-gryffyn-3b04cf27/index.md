@@ -1,10 +1,9 @@
 ---
 metadata:
-  camera:
-  lens:
-  shutter-speed:
-  iso:
-  aperture:
-type: photos
+  camera: Nikon D90
+  lens: Nikkor DX 18-200mm f/3.5-5.6G VR
+  shutter-speed: 1/400
+  iso: 400
+  aperture: f/5.6
 type: photos
 ---
