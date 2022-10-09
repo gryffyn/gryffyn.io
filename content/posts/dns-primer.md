@@ -31,9 +31,64 @@ The second field, `3600`, is the TTL (Time To Live) interval of the record. It i
 
 The third field, `IN`, means Internet, as opposed to other networks in use at the time DNS was created. Some servers use this field for extra data -- both [coredns](https://coredns.io/plugins/chaos/) and [PowerDNS](https://doc.powerdns.com/authoritative/settings.html#version-string) use `CH` ([Chaosnet](https://en.wikipedia.org/wiki/Chaosnet)) records for version information. But likely you'll never see a record that's not `IN`, or at the very least won't have to fiddle with them.
 
-The third field, `A`, is the type of query. There are a large number of query types in use in modern DNS servers, but the most common are `A` -- an IPv4 address, `AAAA` -- an IPv6 address, `TXT` -- a text record, `CNAME` -- a redirect to another domain, `MX` -- defines mail server lookups, and `NS` -- defines the nameservers used for the domain.
+The fourth field, `A`, is the type of query. There are a large number of query types in use in modern DNS servers, but the most common are `A` -- an IPv4 address, `AAAA` -- an IPv6 address, `TXT` -- a text record, `CNAME` -- a redirect to another domain, `MX` -- defines mail server lookups, and `NS` -- defines the nameservers used for the domain. Another query type, `SOA`, is not typically written by hand but created and updated by the DNS server. The `SOA` record, or Start of Authority, contains information about the zone itself. Examples of these query types can be found in [the next section](#bind-compatible-zonefiles).
 
 The final field is the record data, also called Rdata. The Rdata type and length depends on the record type, but is typically limited to 255 bytes. 
+
+### SOA Record Format
+The `SOA` record is composed of 7 fields. The first field contains the primary nameserver for the zone, terminated with a dot. The second field contains the contact email address, formatted with a dot instead of an at (@) sign.
+
+The serial field, the third field in the `SOA` record, contains the serial number for the zone. There are multiple ways the serial can be formatted, including a UNIX timestamp of the latest change, or initially set to `1` and incrememnted by 1 on each change, however the format recommended by [RFC 1912](https://www.rfc-editor.org/rfc/rfc1912) is `YYYYMMDDNN` where `NN` indicates the revision number. This starts at 01 and is incremented on each change to the zone by the primary nameserver. For zone transfers to occur, the serial number should be formatted correct and be the same on both the primary nameserver and the secondary nameserver(s). When the primary nameserver is updated, it is larger than the secondary nameserver's serial number, and when the secondary nameserver checks the `SOA` record on the primary afer the refresh timeout, it sees the serial has increased and initiates a zone transfer to update the zone on the secondary.
+
+The next few fields set times for certain actions taken by the secondary nameserver(s). These times are typically in seconds, however newer versions of BIND and other DNS servers support using suffixes (such as s, m, d) to set times. The REFRESH time indicates in seconds how often the secondary namserver(s) query the `SOA` of the primary nameserver to check for changes. The RETRY field sets how long after an unsuccessful `SOA` query the secondary nameserver(s) may query the primary again. The EXPIRE field sets how long the secondaries should serve the zone after an unsuccessful query to the primary.
+
+The MINIMUM field is a bit more confusing. This field, along with the `SOA` TTL value, determine the negative caching TTL for the zone. The authoritative nameserver uses the smaller of the two fields to determine the zone negative caching TTL. This field had historic uses which are [no longer applicable](https://www.rfc-editor.org/rfc/rfc2308#section-4).
+
+### BIND-compatible zonefiles
+Zonefiles are a common standard for representing entire DNS zones as plaintext.
+
+Below is an example zonefile for the domain `example.com`.
+```
+$ORIGIN example.com.
+
+; the @ sign at the start of a record indicates the root of the zone.
+@        3600 IN SOA  ns1.example.com. hostmaster.example.com. (
+                      2022100901 ; serial
+                      43200      ; refresh (12 hours)
+                      7200       ; retry (2 hours)
+                      1209600    ; expire (2 weeks)
+                      300        ; minimum (1 hour)
+                      )
+
+; This zone defines its own nameserver A records.
+; If using hosted DNS, these are unnecessary.
+ns1      3600 IN A    10.20.30.40
+ns2      3600 IN A    11.21.31.41
+
+; Every zone is required to have NS records
+; pointing to the authoritative DNS namservers
+; for the zone.
+@        3600 IN NS   ns1.example.com.
+@        3600 IN NS   ns2.example.com.
+
+; Example A records. Starting a record with an
+; unqualified domain name (such as the www below)
+; are relative to the $ORIGIN.
+; So www would become www.example.com.
+www      3600 IN A    20.30.40.50
+mail     3600 IN A    20.30.40.50
+
+; MX records have two parts to the data --
+; the first field indicates the priority for the server,
+; and the second field is the address of the mail server.
+@        3600 IN MX   10 mail.example.com.
+
+; TXT record data should be contained in double quotes.
+@        3600 IN TXT  "v=spf1 mx include:example.com ~all"
+
+; Example AAAA (IPv6) record
+@        3600 IN AAAA 2001:db8:dead:beef::1
+```
 
 ## Resolver Types
 (in no particular order)
@@ -42,7 +97,7 @@ The final field is the record data, also called Rdata. The Rdata type and length
 Stub resolvers are fairly simple. They are often found running on home routers, sometimes filtering out some requests and serving records for them, and then forwarding the rest of the traffic to a recursive resolver. These resolvers do not actual resolution of their own, past minor static hostname configuration or perhaps mDNS support. Instead they relay DNS lookups to another server or servers.
 
 ### Recursive
-Recursive resolvers walk the DNS tree to resolve queries. As an example, let's say we've queried the IP address of the domain `www.example.com`. A recursive resolver will start with the 13 DNS root nameservers -- `a.root-servers.net` through `m.root-servers.net` -- and look up the domain in reverse order of the labels. It will query one of those 13 root nameservers for the authoritative resolver for `com`. It then queries that nameserver (or one of them) for the domain `example.com`. That domain's authoritative nameserver(s) are then queried for the A record at `www.example.com`. The resolver then returns that IP address. Typically, recursive resolvers maintain caches to minimize the number of queries they must do on frequently-resolved domains.
+Recursive resolvers walk the DNS tree to resolve queries. As an example, let's say we've queried the IP address of the domain `www.example.com`. A recursive resolver will start with the 13 DNS root nameservers -- `a.root-servers.net` through `m.root-servers.net` -- and look up the domain in reverse order of the labels. It will query one of those 13 root nameservers for the authoritative resolver for `com`. It then queries that nameserver (or one of them) for the domain `example.com`. That domain's authoritative nameserver(s) are then queried for the A record at `www.example.com`. The resolver then returns that IP address. Typically, recursive resolvers maintain caches to minimize the number of queries they must do on frequently-resolved domains. Resolvers also may negatively cache domains, where if a queried domain does not exist (returns NXDOMAIN), the resolver caches the NXDOMAIN result.
 
 Recursive resolvers do not serve any records themselves, but instead query records from authoritative servers.
 
