@@ -1,0 +1,56 @@
+baseurl = "https://gryffyn.io/"
+title = "gryffyn.io"
+theme = "hugo-f5-dark"
+languageCode = "en-us"
+pygmentsUseClasses = true
+relativeURLs = true
+enableRobotsTXT = true
+enableGitInfo = true
+
+[frontmatter]
+date = ["date", "publishDate", "lastmod"]
+lastmod = ["lastmod", ":git", "date", "publishDate"]
+publishDate = ["publishDate", "date"]
+expiryDate = ["expiryDate"]
+
+[params]
+title = "gryffyn"
+description = "blog posts about tech and queerness"
+titleCutting = true
+goatcounter = true
+gcURL = "https://stat.gryffyn.io/"
+
+[params.info]
+author = "gryffyn"
+link = "https://github.com/gryffyn"
+
+[params.sections]
+about = true
+posts = true
+
+[[params.socialLinks]]
+name = "git"
+url = "https://git.gryffyn.io/gryffyn"
+
+[[params.socialLinks]]
+name = "github"
+url = "https://github.com/gryffyn"
+
+[[params.socialLinks]]
+name = "twitter"
+url = "https://twitter.com/gryffynmp"
+
+[[params.navlinks]]
+name = "about/"
+url = "about/"
+
+[[params.navlinks]]
+name = "posts/"
+url = "posts/"
+
+[[params.navlinks]]
+name = "galleries/"
+url = "galleries/"
+
+[taxonomies]
+series = "series"
