@@ -37,3 +37,6 @@ params:
       url: posts/
     - name: galleries/
       url: galleries/
+
+taxonomies:
+  series: "series"
