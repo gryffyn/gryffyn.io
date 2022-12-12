@@ -6,7 +6,7 @@ description = "ever expanding list of quotes I like"
 tags = [
     "quotes",
 ]
-hideMeta = false
+hideMeta = true
 +++
 
 {{< blockquote author="Maggie Nelson" source="Bluets" >}}
