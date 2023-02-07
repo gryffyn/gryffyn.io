@@ -12,7 +12,7 @@ steps:
     image: plugins/hugo
     settings:
       extended: true
-      hugo_version: 0.102.1
+      hugo_version: 0.109.0
       url: https://gryffyn.io/
 
   - name: deploy
