@@ -15,10 +15,10 @@ expiryDate = ["expiryDate"]
 
 [params]
 title = "gryffyn"
-description = "blog posts about tech and queerness"
+description = "there's things here"
 titleCutting = true
 goatcounter = true
-gcURL = "https://stat.gryffyn.io/"
+gcURL = "https://al.gryffyn.io/"
 
 [params.info]
 author = "gryffyn"
