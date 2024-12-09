@@ -5,6 +5,6 @@ metadata:
   shutter-speed: 1/320
   iso: 200
   aperture: f/5.6
-type: photos
+type: gallery
 ---
 My favourite photo I've ever taken.

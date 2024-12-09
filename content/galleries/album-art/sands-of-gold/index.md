@@ -1,6 +1,6 @@
 ---
 title: "Sands of Gold"
 description: "Adolescente Pirate"
-type: album-art
+type: gallery
 ---
 This one feels like it has so much potential but it's just not good.

@@ -5,5 +5,5 @@ metadata:
   shutter-speed: 1.3
   iso: 100
   aperture: f/22
-type: photos
+type: gallery
 ---

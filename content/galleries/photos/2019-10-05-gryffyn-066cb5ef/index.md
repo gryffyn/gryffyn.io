@@ -5,6 +5,5 @@ metadata:
   shutter-speed:
   iso:
   aperture:
-type: photos
-type: photos
+type: gallery
 ---

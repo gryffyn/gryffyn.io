@@ -5,5 +5,5 @@ metadata:
   shutter-speed: 1/320
   iso: 400
   aperture: f/4.5
-type: photos
+type: gallery
 ---

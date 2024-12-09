@@ -52,5 +52,9 @@ url = "posts/"
 name = "galleries/"
 url = "galleries/"
 
+[[params.navlinks]]
+name = "collections/"
+url = "collections/"
+
 [taxonomies]
 series = "series"
