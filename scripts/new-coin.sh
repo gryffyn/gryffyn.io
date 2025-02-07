@@ -145,3 +145,11 @@ do
   arg=${metadata[$idx]}
   sed -i -e "s/@$arg@/${!arg}/g" "$folder_name/index.md"
 done
+
+read -p "Edit? [y/N] " edit
+case $edit in
+	[yY] )
+	    nano "$folder_name/index.md"
+		break;;
+	* ) exit;;
+esac
