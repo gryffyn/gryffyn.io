@@ -1,7 +1,8 @@
 <footer class="footer">
     {{ with $.Site.Params.Info }}
-    <p>© {{ now.Format "2006" }} <a href="{{ .Link }}">{{ .Author }}</a> --
+    <p>© {{ now.Format "2006" }} <a href="{{ .Link }}">{{ .Author }}</a>
     {{ end }}
+    licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> <span class="ccsym">🅭🅯🄏🄎</span> --
     {{- with .Site.Home -}}
       {{ with .OutputFormats.Get "rss" -}}
         <a href="{{ .Permalink }}" rel="noopener {{ .Rel }}" type="{{ .MediaType.Type }}">rss</a>
