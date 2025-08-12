@@ -9,10 +9,11 @@ steps:
     - git submodule update --init --recursive
 
   - name: build
-    image: plugins/hugo
+    image: ghcr.io/maurerle/woodpecker-hugo
     settings:
       extended: true
       hugo_version: 0.148.2
+      pull: always
       url: https://gryffyn.io/
 
   - name: deploy
