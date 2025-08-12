@@ -36,10 +36,6 @@ url = "https://git.gryffyn.io/gryffyn"
 name = "github"
 url = "https://github.com/gryffyn"
 
-[[params.socialLinks]]
-name = "twitter"
-url = "https://twitter.com/gryffynmp"
-
 [[params.navlinks]]
 name = "about/"
 url = "about/"
